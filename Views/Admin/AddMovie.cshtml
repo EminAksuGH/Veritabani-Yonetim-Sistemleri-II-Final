@@ -1,0 +1,56 @@
+﻿@model FilmKurdu.Models.Movies
+
+@{
+    ViewBag.Title = "Add Movie";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Movie</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Add Movie</h2>
+        @using (Html.BeginForm("AddMovie", "Admin", FormMethod.Post))
+        {
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Name, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Description, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Genre, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Genre, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Genre2, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Genre2, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Image, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Image, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.ReleaseDate, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.ReleaseDate, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Stars, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Stars, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Score, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Score, new { @class = "form-control" })
+            </div>
+            <!-- Add other movie fields here -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        }
+    </div>
+</body>
+</html>

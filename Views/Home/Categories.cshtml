@@ -1,0 +1,131 @@
+﻿@model List<FilmKurdu.Models.ViewModel.MediaItem>
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                @using (Html.BeginForm("Categories", "Home", FormMethod.Get))
+                {
+                    <div class="d-flex justify-content-center">
+                        <div class="w-25 col">
+                            <label for="genre1" class="text-white">Category 1:</label>
+                            <select class="form-select" id="genre1" name="genre1">
+                                <option value="">Select a Genre</option>
+                                <option value="Action">Action</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Comedy">Comedy</option>
+                                <option value="Crime">Crime</option>
+                                <option value="Sci-fi">Sci-fi</option>
+                                <option value="Thriller">Thriller</option>
+                            </select>
+                        </div>
+
+                        <div class="w-25 col">
+                            <label for="genre2" class="text-white">Category 2:</label>
+                            <select class="form-select" id="genre2" name="genre2">
+                                <option value="">Select a Genre</option>
+                                <option value="Action">Action</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Comedy">Comedy</option>
+                                <option value="Crime">Crime</option>
+                                <option value="Sci-fi">Sci-fi</option>
+                                <option value="Thriller">Thriller</option>
+
+                            </select>
+                        </div>
+                        <div class="justify-content-center d-flex mt-4">
+                            <input type="submit" value="Filter" class="btn btn-light" />
+                        </div>
+                    </div>
+
+                }
+
+                @if (Model.Count > 0)
+                {
+                    <table class="table table-striped table-light table-hover mt-5">
+                        <thead>
+                            <tr>
+                                <th scope="col">Movie Title</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Release Date</th>
+                                <th scope="col">Stars</th>
+                                <th scope="col">Score</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Where(x => x.Type == "Movie"))
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.Genre, @item.Genre2</td>
+                                    <td>@item.ReleaseDate</td>
+                                    <td>@item.Stars</td>
+                                    <td>@item.Score</td>
+                                    <td>@Html.ActionLink("Movie Page", "MoviePage", "Home", new { movieId = item.ID }, new { @class = "btn btn-outline-dark" })</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <hr />
+
+                    <table class="table table-striped table-light table-hover mt-5">
+                        <thead>
+                            <tr>
+                                <th scope="col">Series Title</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Release Date</th>
+                                <th scope="col">Stars</th>
+                                <th scope="col">Score</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Where(x => x.Type == "Series"))
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.Genre, @item.Genre2</td>
+                                    <td>@item.ReleaseDate</td>
+                                    <td>@item.Stars</td>
+                                    <td>@item.Score</td>
+                                    <td>@Html.ActionLink("Series Page", "SeriesPage", "Home", new { SeriesId = item.ID }, new { @class = "btn btn-outline-dark" })</td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    if (ViewBag.Error != null)
+                    {
+                        <div class="text-danger">
+                            @ViewBag.Error
+                        </div>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

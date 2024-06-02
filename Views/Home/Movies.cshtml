@@ -1,0 +1,42 @@
+﻿@model List<FilmKurdu.Models.Movies>
+
+@{
+    ViewBag.Title = "All Movies";
+    Layout = "Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+@if (Model != null)
+{
+    if (Model.Count > 0)
+    {
+        <div class="block">
+            <div class="image-container flex-wrap">
+                @foreach (var item in Model)
+                {
+                    <div class="block">
+                        <div class="image-container">
+                            <div>
+                                <a href="@Url.Action("MoviePage", "Home", new {movieId = item.ID})" ><img src="@item.Image" alt="poster" style="border: 1px solid #ffffff;"/></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <h5>No movies found</h5>
+    }
+}
+</body>
+</html>

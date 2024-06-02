@@ -1,0 +1,21 @@
+﻿@model FilmKurdu.Models.Movies
+
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+    <title>RandomMovie</title>
+</head>
+<body>
+<div>
+    <h3>RandomMovie</h3>
+    <p>@Model.Name</p>
+    <p>@Model.Description</p>
+    <p>@Model.Genre @Model.Genre2</p>
+    <p>@Model.ReleaseDate.ToString("dd MMMM yyyy")</p>
+    <p>@Model.Score</p>
+    
+    <a href="@Url.Action("AddWatchList", "Home", new { movieID = Model.ID })" class="btn btn-success">İzleme Listesine Ekle</a>
+</div>
+</body>
+</html>

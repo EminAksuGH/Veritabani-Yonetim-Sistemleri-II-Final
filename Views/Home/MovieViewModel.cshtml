@@ -1,0 +1,26 @@
+﻿
+@foreach (var movieViewModel in Model)
+{
+    <div class="movie-item">
+        <h3>@movieViewModel.Movie.Title</h3>
+        <p>@movieViewModel.Movie.Description</p>
+        @if (movieViewModel.IsInWatchlist)
+        {
+            using (Html.BeginForm("RemoveFromWatchlist", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="movieId" value="@movieViewModel.Movie.Id" />
+                <button type="submit" class="btn btn-outline-danger">Remove From Watchlist</button>
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("AddWatchlist", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="movieId" value="@movieViewModel.Movie.Id" />
+                <button type="submit" class="btn btn-outline-info">Add to Watchlist</button>
+            }
+        }
+    </div>
+}

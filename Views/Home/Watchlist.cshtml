@@ -1,0 +1,52 @@
+﻿@model List<FilmKurdu.Models.Movies>
+@{
+    ViewBag.Title = "Watchlist";
+    Layout = "Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class=" justify-content-center d-flex">
+        <h3 class="text-white" style="color: white; align-self: center">My Watchlist</h3>
+    </div>
+
+@if (Model.Count > 0)
+{
+    <div class="block">
+        <div class="image-container flex-wrap">
+            @foreach (var item in Model)
+            {
+                <div class="block">
+                    <div class="image-container">
+                        <div>
+                            <a href="@Url.Action("MoviePage", "Home", new { movieId = item.ID })"><img src="@item.Image" style="border: solid 1px #ffffff"/></a>
+                        </div>
+                    
+                    </div>
+                    <div class="text-center mt-4">
+                        @Html.ActionLink("Remove from watchlist", "RemoveFromWatchlist", "Home", new { movieId = item.ID }, new { @class="btn btn-outline-danger" })
+                    </div>
+                
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+<div class="d-flex justify-content-center mt-5">
+    <h5 style="color: white; align-self: center">There is nothing here :(</h5>
+</div>
+        
+}
+
+</body>
+</html>

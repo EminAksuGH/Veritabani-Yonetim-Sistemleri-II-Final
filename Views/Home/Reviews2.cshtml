@@ -1,0 +1,62 @@
+﻿@model List<FilmKurdu.Models.ViewModel.ReviewViewModel2>
+@{
+    ViewBag.Title = "My Reviews";
+    Layout = "Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="p-5">
+        <h1>My Reviews</h1>
+    </div>
+
+    <div class="p-5">
+        @if (Model.Count > 0)
+        {
+            <h5>You have shared @Model.Count review(s) so far!</h5>
+            if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <div>
+                <table class="table table-striped table-hover table-light">
+                    <thead>
+                        <tr>
+                            <th>Series</th>
+                            <th>Review</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>e</td>
+                                <td><div style="width: 1020px; word-wrap: break-word;">@item.ReviewText</div></td>
+                                <td>
+                                    <a href="@Url.Action("DeleteReview", "Home", new { reviewId = item.Review.ID })" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <h5>You have not shared any review yet!</h5>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿
+@model List<FilmKurdu.Models.Users>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Admin Sayfası</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
+
+    <div class="m-5">
+        <p style="font-size: 24px; font-weight: bold">Hoşgeldin! <br> İşlem: Kullanıcı Listeleri </p>
+    </div>
+
+    <div>
+        <ul class="nav nav-pills m-5">
+            <li class="nav-item mx-2">
+                @Html.ActionLink("Ana Sayfa", "HomePage", "Home", null, new { @class = "btn btn-primary", aria_current = "page" })
+            </li>
+            <li class="nav-item mx-2">
+                @Html.ActionLink("Kullanıcı Ekle", "CreateUser", "Admin", null, new { @class = "btn btn-success" })
+            </li>
+            <li class="nav-item mx-2">
+                @Html.ActionLink("Kullanıcı Güncelle", "UpdateUser1", "Admin", null, new { @class = "btn btn-info" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Kullanıcı Sil", "deleteUser", "Admin", null, new { @class = "btn btn-danger" })
+            </li>
+            <li class="nav-item mx-2">
+                @Html.ActionLink("Film Ekle", "AddMovie", "Admin", null, new { @class = "btn btn-primary", aria_current = "page" })
+            </li>
+            <li class="nav-item mx-2">
+                @Html.ActionLink("Dizi Ekle", "AddSeries", "Admin", null, new { @class = "btn btn-primary", aria_current = "page" })
+            </li>
+            <li class="nav-item mx-2">
+                @Html.ActionLink("Yorum Sil", "DeleteReview", "Admin", null, new { @class = "btn btn-primary", aria_current = "page" })
+            </li>
+        </ul>
+    </div>
+
+    <div class="p-5">
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.ID</td>
+                        <td>@user.Username</td>
+                        <td>@user.Mail</td>
+                        <td>@user.Password</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
